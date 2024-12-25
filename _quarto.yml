@@ -8,5 +8,18 @@ format:
     css: styles.css
     toc: true
 
+website:
+  title: "λ-исчисление"
+  navbar: 
+    left: 
+      - index.html
+      text: 'Главная'
+      - docs/Lambda_vs_Turing.html
+      text: 'Лямбда-исчисление и машина Тьюринга'
+      - docs/lambda-calculus.html
+      text: 'Лямбда-исчисление'
+      - presentation/presentation.html
+      text: 'Презентация'
+
 editor: visual
 
