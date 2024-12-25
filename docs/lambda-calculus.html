@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lambda-calculus</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-c75bcb89907db7808f0349b764a1a524.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#нетипизированное-лямбда-исчисление" id="toc-нетипизированное-лямбда-исчисление" class="nav-link active" data-scroll-target="#нетипизированное-лямбда-исчисление">Нетипизированное лямбда-исчисление</a>
+  <ul class="collapse">
+  <li><a href="#определение" id="toc-определение" class="nav-link" data-scroll-target="#определение">Определение</a></li>
+  <li><a href="#соглашения" id="toc-соглашения" class="nav-link" data-scroll-target="#соглашения">Соглашения</a></li>
+  <li><a href="#область-видимости" id="toc-область-видимости" class="nav-link" data-scroll-target="#область-видимости">Область видимости</a></li>
+  <li><a href="#замкнутый-терм.-комбинатор" id="toc-замкнутый-терм.-комбинатор" class="nav-link" data-scroll-target="#замкнутый-терм.-комбинатор">Замкнутый терм. Комбинатор</a></li>
+  <li><a href="#бета-редукция" id="toc-бета-редукция" class="nav-link" data-scroll-target="#бета-редукция">Бета-редукция</a></li>
+  <li><a href="#примеры" id="toc-примеры" class="nav-link" data-scroll-target="#примеры">Примеры</a></li>
+  <li><a href="#статегии-редукции" id="toc-статегии-редукции" class="nav-link" data-scroll-target="#статегии-редукции">Статегии редукции</a>
+  <ul class="collapse">
+  <li><a href="#полная-бета-редукция" id="toc-полная-бета-редукция" class="nav-link" data-scroll-target="#полная-бета-редукция">Полная бета-редукция</a></li>
+  <li><a href="#нормальный-порядок" id="toc-нормальный-порядок" class="nav-link" data-scroll-target="#нормальный-порядок">Нормальный порядок</a></li>
+  <li><a href="#вызов-по-имени" id="toc-вызов-по-имени" class="nav-link" data-scroll-target="#вызов-по-имени">Вызов по имени</a></li>
+  <li><a href="#вызов-по-значению" id="toc-вызов-по-значению" class="nav-link" data-scroll-target="#вызов-по-значению">Вызов по значению</a></li>
+  </ul></li>
+  <li><a href="#функции-нескольких-аргументов" id="toc-функции-нескольких-аргументов" class="nav-link" data-scroll-target="#функции-нескольких-аргументов">Функции нескольких аргументов</a></li>
+  <li><a href="#подстановка" id="toc-подстановка" class="nav-link" data-scroll-target="#подстановка">Подстановка</a>
+  <ul class="collapse">
+  <li><a href="#альфа-конверсия" id="toc-альфа-конверсия" class="nav-link" data-scroll-target="#альфа-конверсия">Альфа-конверсия</a></li>
+  <li><a href="#подстановка.-окончательное-определение" id="toc-подстановка.-окончательное-определение" class="nav-link" data-scroll-target="#подстановка.-окончательное-определение">Подстановка. Окончательное определение</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="нетипизированное-лямбда-исчисление" class="level1">
+<h1>Нетипизированное лямбда-исчисление</h1>
+<section id="определение" class="level2">
+<h2 class="anchored" data-anchor-id="определение">Определение</h2>
+<pre class="text"><code>t ::=
+    x  # переменная (variable)
+    | λx.t  # абстракция (lambda abstraction)
+    | t t  # применение (application)</code></pre>
+<hr>
+</section>
+<section id="соглашения" class="level2">
+<h2 class="anchored" data-anchor-id="соглашения">Соглашения</h2>
+<ol type="1">
+<li>Лево-ассоциативность применения:</li>
+</ol>
+<pre class="text"><code>t1 t2 t3 = (t1 t2) t3</code></pre>
+<ol start="2" type="1">
+<li>Тело абстакции идёт до конца выражения:</li>
+</ol>
+<pre class="text"><code>λx.λy.x y = λx.(λy.(x y))
+
+λx.λy.x y z = λx.(λy.((x y) z))</code></pre>
+<hr>
+</section>
+<section id="область-видимости" class="level2">
+<h2 class="anchored" data-anchor-id="область-видимости">Область видимости</h2>
+<ol type="1">
+<li>Переменные связываются абстракциями:</li>
+</ol>
+<pre class="text"><code>λx.t
+# Если `x` входит в `t`,
+# то `x` связан (bound) абстракцией
+# `λx` — связывающие определение (binder)
+#  с областью видимости `t`</code></pre>
+<pre><code>x y # `x` свободен
+λy.x y # `x` свободен
+
+λx.x # `x` связан
+λz.λx.λy.x (y z) # `x` связан
+
+(λx.x) x # Первый `x` связан, второй свободен</code></pre>
+<hr>
+</section>
+<section id="замкнутый-терм.-комбинатор" class="level2">
+<h2 class="anchored" data-anchor-id="замкнутый-терм.-комбинатор">Замкнутый терм. Комбинатор</h2>
+<p>Замкнутый (closed) терм — терм без свободных переменных</p>
+<pre class="text"><code>λx.x # Комбинатор тождества
+id = λx.x</code></pre>
+<hr>
+</section>
+<section id="бета-редукция" class="level2">
+<h2 class="anchored" data-anchor-id="бета-редукция">Бета-редукция</h2>
+<pre class="text"><code>(λx.t) u → t[x := u]</code></pre>
+<p><code>t[x := u]</code> — терм <code>t</code>, в котором все свободные вхождения <code>x</code> заменены на <code>u</code></p>
+<hr>
+</section>
+<section id="примеры" class="level2">
+<h2 class="anchored" data-anchor-id="примеры">Примеры</h2>
+<ol type="1">
+<li>Применение комбинатора тождества к переменной:</li>
+</ol>
+<pre class="text"><code>(λx.x) y → x[x := y] = y</code></pre>
+<ol start="2" type="1">
+<li>Применение комбинатора тождества к комбинатору тождества:</li>
+</ol>
+<pre class="text"><code>(λx.x) (λx.x) → x[x := (λx.x)] = λx.x</code></pre>
+<ol start="3" type="1">
+<li>Лево-ассоциативность</li>
+</ol>
+<pre class="text"><code>(λx.x) (λx.x) y → x[x := (λx.x)] y = λx.x y</code></pre>
+<hr>
+</section>
+<section id="статегии-редукции" class="level2">
+<h2 class="anchored" data-anchor-id="статегии-редукции">Статегии редукции</h2>
+<!-- TODO: Надо поменять пример на нормальный при котором видна разница -->
+<section id="полная-бета-редукция" class="level3">
+<h3 class="anchored" data-anchor-id="полная-бета-редукция">Полная бета-редукция</h3>
+<p>Выбор следующего редекса не зависит от порядка</p>
+<pre class="text"><code>(λx.x) ((λx.x) (λz.(λx.x) z))
+→ (λx.x) ((λx.x) (λz.z))
+→ (λx.x) (λz.z)
+→ λz.z</code></pre>
+</section>
+<section id="нормальный-порядок" class="level3">
+<h3 class="anchored" data-anchor-id="нормальный-порядок">Нормальный порядок</h3>
+<p>Всегда редуцируется самый левый внешний редекс</p>
+<pre class="text"><code>(λx.x) ((λx.x) (λz.(λx.x) z))
+→ (λx.x) (λz.(λx.x) z)
+→ λz.(λx.x) z
+→ λz.z</code></pre>
+</section>
+<section id="вызов-по-имени" class="level3">
+<h3 class="anchored" data-anchor-id="вызов-по-имени">Вызов по имени</h3>
+<p>Всегда редуцируется самый левый внешний редекс, который не содержит абстракций</p>
+<pre class="text"><code>(λx.x) ((λx.x) (λz.(λx.x) z))
+→ (λx.x) (λz.(λx.x) z)
+→ λz.(λx.x) z  # Не редуцируется</code></pre>
+</section>
+<section id="вызов-по-значению" class="level3">
+<h3 class="anchored" data-anchor-id="вызов-по-значению">Вызов по значению</h3>
+<p>Всегда редуцируется самый левый внешний редекс, который не содержит абстракций и не является переменной</p>
+<pre class="text"><code>(λx.x) ((λx.x) (λz.(λx.x) z))
+→ (λx.x) (λz.(λx.x) z)
+→ λz.(λx.x) z  # Не редуцируется</code></pre>
+</section>
+</section>
+<section id="функции-нескольких-аргументов" class="level2">
+<h2 class="anchored" data-anchor-id="функции-нескольких-аргументов">Функции нескольких аргументов</h2>
+<p>Их нет, но есть есть функции высшего порядка</p>
+<pre class="text"><code>f = λ(x, y).s  # Такого терма нет
+f = λx.λy.s  # Вместо этого используется каррирование
+f v w = (f v) w → ((λx.λy.s) v) w → (λy.s[x := v]) w → s[x := v][y := w]</code></pre>
+<hr>
+</section>
+<section id="подстановка" class="level2">
+<h2 class="anchored" data-anchor-id="подстановка">Подстановка</h2>
+<pre class="text"><code>x[x := u] = u
+y[x := u] = y
+(λy.t)[x := u] = λy.t[x := u]
+(t1 t2)[x := u] = t1[x := u] t2[x := u]</code></pre>
+<pre class="text"><code>(λx.x)[x := u] != λx.u # x связан
+(λx.x)[x := u] = λx.x # подстановка должна заканчиваться на связанной переменной</code></pre>
+<pre class="text"><code>(λx.y)[y := x] = λx.x # y свободен
+# x при подстановке тоже не связан
+# но в результате подстановки мы получили
+# связанную переменную — захватили свободную переменную</code></pre>
+<section id="альфа-конверсия" class="level3">
+<h3 class="anchored" data-anchor-id="альфа-конверсия">Альфа-конверсия</h3>
+<pre class="text"><code>(λx.s) = (λy.s[x := y])</code></pre>
+</section>
+<section id="подстановка.-окончательное-определение" class="level3">
+<h3 class="anchored" data-anchor-id="подстановка.-окончательное-определение">Подстановка. Окончательное определение</h3>
+<pre class="text"><code>x[x := u] = u
+y[x := u] = y # если `y` != `x`
+(λy.t)[x := u] = λy.t[x := u] # если `y` != `x` и `y` не свободен в `u`
+(t1 t2)[x := u] = t1[x := u] t2[x := u]</code></pre>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/Fel1-of\.github\.io\/MLaTA_Alt_2024\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
