@@ -233,12 +233,12 @@
 <h2>Зачем придумана теория типов</h2>
 <ul>
 <li>В наивной теории множеств существует парадокс Рассела</li>
-<li>Типы создают иерахию объектов, исключая самоссылку</li>
+<li>Типы создают иерархию объектов, исключая самоссылку</li>
 <li>Ограничение допустимых формул</li>
 </ul>
 </section>
-<section id="определие-λ-исчесления.-термы" class="slide level2">
-<h2>Определие λ-исчесления. Термы</h2>
+<section id="определение-λ-исчисления.-термы" class="slide level2">
+<h2>Определение λ-исчисления. Термы</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb1-1"><a></a>t <span class="in">::</span>=</span>
 <span id="cb1-2"><a></a>    x  # переменная <span class="in">(</span>variable<span class="in">)</span></span>
 <span id="cb1-3"><a></a>    <span class="op">|</span> λx<span class="fu">.t</span>  # абстракция <span class="in">(</span>lambda abstraction<span class="in">)</span></span>
@@ -250,7 +250,7 @@
 </ol>
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a></a>t1 t2 t3 = (t1 t2) t3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="2" type="1">
-<li>Тело абстакции идёт до конца выражения:</li>
+<li>Тело абстракции идёт до конца выражения:</li>
 </ol>
 <div class="sourceCode" id="cb3"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb3-1"><a></a>λx. x y = λx. <span class="in">(</span>x y<span class="in">)</span></span>
 <span id="cb3-2"><a></a></span>
@@ -291,7 +291,7 @@
 <div class="sourceCode" id="cb7"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb7-1"><a></a><span class="in">(</span>λx<span class="fu">.t</span><span class="in">)</span> u → t<span class="ex">[</span><span class="ss">x </span><span class="in">:</span>= u]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Заменяем в терме <span class="math inline">\(t\)</span> вхождения <span class="math inline">\(x\)</span> на <span class="math inline">\(u\)</span> и убираем λ, то есть <em>редуцируем</em>.</p>
 <div class="fragment">
-<p><strong><span class="math inline">\(\beta\)</span>-редукция — вычисление в λ-исчеслении</strong></p>
+<p><strong><span class="math inline">\(\beta\)</span>-редукция — вычисление в λ-исчислении</strong></p>
 </div>
 </section>
 <section id="true-false-if" class="slide level2">
@@ -334,7 +334,7 @@
 </div>
 <div class="fragment">
 <p>НО</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb14-1"><a></a><span class="in">(</span>λx<span class="fu">.y</span><span class="in">)</span><span class="ex">[</span><span class="ss">y </span><span class="in">:</span>= x] = λx<span class="fu">.x</span> # y свободен — x при подстановке должен остаться не связаным<span class="op">,</span></span>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb14-1"><a></a><span class="in">(</span>λx<span class="fu">.y</span><span class="in">)</span><span class="ex">[</span><span class="ss">y </span><span class="in">:</span>= x] = λx<span class="fu">.x</span> # y свободен — x при подстановке должен остаться не связанным<span class="op">,</span></span>
 <span id="cb14-2"><a></a># но в результате подстановки мы получили</span>
 <span id="cb14-3"><a></a># связанную переменную — захватили свободную переменную</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -345,7 +345,7 @@
 </section>
 <section id="сравнение-с-языками-программирования" class="slide level2">
 <h2>Сравнение с языками программирования</h2>
-<p>λ-исчесление</p>
+<p>λ-исчисление</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb16-1"><a></a>λx<span class="fu">.λy</span>.<span class="in">(</span>x <span class="op">+</span> y<span class="in">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Python</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a></a>add <span class="op">=</span> <span class="kw">lambda</span> x: <span class="kw">lambda</span> y: x <span class="op">+</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -359,7 +359,7 @@
 </section>
 <section id="типы" class="slide level2">
 <h2>Типы</h2>
-<p>Введем множестно типов переменных <span class="math inline">\(\mathcal{X}\)</span>. И населим его одним базовым типом <span class="math inline">\(\circ\)</span></p>
+<p>Введем множество типов переменных <span class="math inline">\(\mathcal{X}\)</span>. И населим его одним базовым типом <span class="math inline">\(\circ\)</span></p>
 <p><span class="math display">\[\mathcal{X} = \{\circ\}\]</span></p>
 <p><span class="math display">\[
 \begin{align}
@@ -405,7 +405,7 @@
 <h2>Типизация по Карри</h2>
 <ul>
 <li>Термы остаются такие же как и в бестиповом</li>
-<li>Вводиться отношение типизируемости</li>
+<li>Вводится отношение типизируемости</li>
 <li>Для свободных переменных типы задаются явно</li>
 <li>Остальные типы выводятся</li>
 </ul>
@@ -460,11 +460,11 @@
 </section>
 <section id="тьюринг-vs-lambda" class="slide level2">
 <h2>Тьюринг vs Lambda</h2>
-<p><em>λ-исчиление</em></p>
+<p><em>λ-исчисление</em></p>
 <ul>
 <li>Ориентирован на математические функции</li>
 <li>Композиция функций</li>
-<li>Высокая абстрация</li>
+<li>Высокая абстракция</li>
 </ul>
 <p><em>Машина Тьюринга</em></p>
 <ul>
@@ -475,7 +475,7 @@
 </section>
 <section id="сложение-чисел" class="slide level2">
 <h2>Сложение чисел</h2>
-<p>λ-исчесление</p>
+<p>λ-исчисление</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb20-1"><a></a>2 = λs λz s <span class="in">(</span>s z<span class="in">)</span></span>
 <span id="cb20-2"><a></a>3 = λs λz s <span class="in">(</span>s <span class="in">(</span>s z<span class="in">))</span></span>
 <span id="cb20-3"><a></a>add = λm. λn. λs. λz. m s <span class="in">(</span>n s z<span class="in">)</span></span>
