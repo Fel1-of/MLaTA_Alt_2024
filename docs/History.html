@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>lambda-calculus – λ-исчисление</title>
+<title>history – λ-исчисление</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -80,7 +80,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../docs/lambda-calculus.html">Нетипизированное лямбда-исчисление</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../docs/History.html">Краткая история появления лямбда-исчисления</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -113,7 +113,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/History.html" class="sidebar-item-text sidebar-link">
+  <a href="../docs/History.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Краткая история появления лямбда-исчисления</span></a>
   </div>
 </li>
@@ -125,7 +125,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/lambda-calculus.html" class="sidebar-item-text sidebar-link active">
+  <a href="../docs/lambda-calculus.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Нетипизированное лямбда-исчисление</span></a>
   </div>
 </li>
@@ -145,28 +145,15 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#нетипизированное-лямбда-исчисление" id="toc-нетипизированное-лямбда-исчисление" class="nav-link active" data-scroll-target="#нетипизированное-лямбда-исчисление">Нетипизированное лямбда-исчисление</a>
+  <li><a href="#краткая-история-появления-лямбда-исчисления" id="toc-краткая-история-появления-лямбда-исчисления" class="nav-link active" data-scroll-target="#краткая-история-появления-лямбда-исчисления">Краткая история появления лямбда-исчисления</a>
   <ul class="collapse">
-  <li><a href="#определение" id="toc-определение" class="nav-link" data-scroll-target="#определение">Определение</a></li>
-  <li><a href="#соглашения" id="toc-соглашения" class="nav-link" data-scroll-target="#соглашения">Соглашения</a></li>
-  <li><a href="#область-видимости" id="toc-область-видимости" class="nav-link" data-scroll-target="#область-видимости">Область видимости</a></li>
-  <li><a href="#замкнутый-терм.-комбинатор" id="toc-замкнутый-терм.-комбинатор" class="nav-link" data-scroll-target="#замкнутый-терм.-комбинатор">Замкнутый терм. Комбинатор</a></li>
-  <li><a href="#бета-редукция" id="toc-бета-редукция" class="nav-link" data-scroll-target="#бета-редукция">Бета-редукция</a></li>
-  <li><a href="#примеры" id="toc-примеры" class="nav-link" data-scroll-target="#примеры">Примеры</a></li>
-  <li><a href="#статегии-редукции" id="toc-статегии-редукции" class="nav-link" data-scroll-target="#статегии-редукции">Статегии редукции</a>
-  <ul class="collapse">
-  <li><a href="#полная-бета-редукция" id="toc-полная-бета-редукция" class="nav-link" data-scroll-target="#полная-бета-редукция">Полная бета-редукция</a></li>
-  <li><a href="#нормальный-порядок" id="toc-нормальный-порядок" class="nav-link" data-scroll-target="#нормальный-порядок">Нормальный порядок</a></li>
-  <li><a href="#вызов-по-имени" id="toc-вызов-по-имени" class="nav-link" data-scroll-target="#вызов-по-имени">Вызов по имени</a></li>
-  <li><a href="#вызов-по-значению" id="toc-вызов-по-значению" class="nav-link" data-scroll-target="#вызов-по-значению">Вызов по значению</a></li>
+  <li><a href="#предпосылки-и-контекст-начало-xx-века" id="toc-предпосылки-и-контекст-начало-xx-века" class="nav-link" data-scroll-target="#предпосылки-и-контекст-начало-xx-века">1. Предпосылки и контекст (начало XX века)</a></li>
+  <li><a href="#разработка-алонзо-чёрчем-1930-е-годы" id="toc-разработка-алонзо-чёрчем-1930-е-годы" class="nav-link" data-scroll-target="#разработка-алонзо-чёрчем-1930-е-годы">2. Разработка Алонзо Чёрчем (1930-е годы)</a></li>
+  <li><a href="#эквивалентность-с-машинами-тьюринга-и-тезис-чёрча-тьюринга" id="toc-эквивалентность-с-машинами-тьюринга-и-тезис-чёрча-тьюринга" class="nav-link" data-scroll-target="#эквивалентность-с-машинами-тьюринга-и-тезис-чёрча-тьюринга">3. Эквивалентность с машинами Тьюринга и тезис Чёрча — Тьюринга</a></li>
+  <li><a href="#появление-типов-в-лямбда-исчислении" id="toc-появление-типов-в-лямбда-исчислении" class="nav-link" data-scroll-target="#появление-типов-в-лямбда-исчислении">4. Появление типов в лямбда-исчислении</a></li>
+  <li><a href="#влияние-на-информатику-и-языки-программирования" id="toc-влияние-на-информатику-и-языки-программирования" class="nav-link" data-scroll-target="#влияние-на-информатику-и-языки-программирования">5. Влияние на информатику и языки программирования</a></li>
   </ul></li>
-  <li><a href="#функции-нескольких-аргументов" id="toc-функции-нескольких-аргументов" class="nav-link" data-scroll-target="#функции-нескольких-аргументов">Функции нескольких аргументов</a></li>
-  <li><a href="#подстановка" id="toc-подстановка" class="nav-link" data-scroll-target="#подстановка">Подстановка</a>
-  <ul class="collapse">
-  <li><a href="#альфа-конверсия" id="toc-альфа-конверсия" class="nav-link" data-scroll-target="#альфа-конверсия">Альфа-конверсия</a></li>
-  <li><a href="#подстановка.-окончательное-определение" id="toc-подстановка.-окончательное-определение" class="nav-link" data-scroll-target="#подстановка.-окончательное-определение">Подстановка. Окончательное определение</a></li>
-  </ul></li>
-  </ul></li>
+  <li><a href="#заключение" id="toc-заключение" class="nav-link" data-scroll-target="#заключение">Заключение</a></li>
   </ul>
 </nav>
     </div>
@@ -176,146 +163,78 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="нетипизированное-лямбда-исчисление" class="level1">
-<h1>Нетипизированное лямбда-исчисление</h1>
-<section id="определение" class="level2">
-<h2 class="anchored" data-anchor-id="определение">Определение</h2>
-<pre class="text"><code>t ::=
-    x  # переменная (variable)
-    | λx.t  # абстракция (lambda abstraction)
-    | t t  # применение (application)</code></pre>
+<section id="краткая-история-появления-лямбда-исчисления" class="level2">
+<h2 class="anchored" data-anchor-id="краткая-история-появления-лямбда-исчисления">Краткая история появления лямбда-исчисления</h2>
+<section id="предпосылки-и-контекст-начало-xx-века" class="level3">
+<h3 class="anchored" data-anchor-id="предпосылки-и-контекст-начало-xx-века">1. Предпосылки и контекст (начало XX века)</h3>
+<ul>
+<li><p><strong>Фундаментализация математики</strong><br>
+В начале XX века математики (особенно Давид Гильберт и его последователи) стремились создать строгую формальную основу для всей математики. Важную роль в этом поиске играло формализованное описание функций и самого понятия «вычисления».</p></li>
+<li><p><strong>Логические парадоксы</strong><br>
+Возникновение парадоксов в теории множеств (<a href="https://ru.wikipedia.org/wiki/Парадокс_Рассела">парадокс Рассела</a>, парадокс Бурали-Форти) поставило под сомнение классические подходы к обоснованию математики и подтолкнуло учёных искать более безопасные формальные системы, свободные от противоречий.</p></li>
+</ul>
 <hr>
 </section>
-<section id="соглашения" class="level2">
-<h2 class="anchored" data-anchor-id="соглашения">Соглашения</h2>
-<ol type="1">
-<li>Лево-ассоциативность применения:</li>
-</ol>
-<pre class="text"><code>t1 t2 t3 = (t1 t2) t3</code></pre>
-<ol start="2" type="1">
-<li>Тело абстакции идёт до конца выражения:</li>
-</ol>
-<pre class="text"><code>λx.λy.x y = λx.(λy.(x y))
-
-λx.λy.x y z = λx.(λy.((x y) z))</code></pre>
+<section id="разработка-алонзо-чёрчем-1930-е-годы" class="level3">
+<h3 class="anchored" data-anchor-id="разработка-алонзо-чёрчем-1930-е-годы">2. Разработка Алонзо Чёрчем (1930-е годы)</h3>
+<ul>
+<li><p><strong>Первоначальные публикации</strong><br>
+С 1932 по 1936 год Алонзо Чёрч опубликовал ряд статей, посвящённых формализации понятия «вычислимая функция». Он представил идею лямбда-исчисления, в котором любая функция задаётся путём лямбда-абстракции и аппликации (применения к аргументам).</p></li>
+<li><p><strong>Система символического манипулирования</strong><br>
+Лямбда-исчисление Чёрча было задумано как способ манипулировать функциями в чисто символическом виде. В нём можно выражать и комбинировать функции, не ссылаясь на их «внутреннее строение».</p></li>
+<li><p><strong>Стивен Клини и Джон Россер</strong><br>
+Под руководством Чёрча работала группа математиков, среди них — Клини и Россер, которые помогали развивать и уточнять основы лямбда-исчисления и расширяли теорию рекурсивных функций.</p></li>
+</ul>
 <hr>
 </section>
-<section id="область-видимости" class="level2">
-<h2 class="anchored" data-anchor-id="область-видимости">Область видимости</h2>
-<ol type="1">
-<li>Переменные связываются абстракциями:</li>
-</ol>
-<pre class="text"><code>λx.t
-# Если `x` входит в `t`,
-# то `x` связан (bound) абстракцией
-# `λx` — связывающие определение (binder)
-#  с областью видимости `t`</code></pre>
-<pre><code>x y # `x` свободен
-λy.x y # `x` свободен
-
-λx.x # `x` связан
-λz.λx.λy.x (y z) # `x` связан
-
-(λx.x) x # Первый `x` связан, второй свободен</code></pre>
+<section id="эквивалентность-с-машинами-тьюринга-и-тезис-чёрча-тьюринга" class="level3">
+<h3 class="anchored" data-anchor-id="эквивалентность-с-машинами-тьюринга-и-тезис-чёрча-тьюринга">3. Эквивалентность с машинами Тьюринга и тезис Чёрча — Тьюринга</h3>
+<ul>
+<li><p><strong>Работы Алана Тьюринга</strong><br>
+В 1936 году Алан Тьюринг представил абстрактную машину (машину Тьюринга), призванную формализовать понятие алгоритма. Тьюринг доказал, что класс функций, вычислимых на машине Тьюринга, совпадает с классом функций, которые можно определить в лямбда-исчислении.</p></li>
+<li><p><strong>Тезис Чёрча — Тьюринга</strong><br>
+На основе этих результатов сформировался тезис (не имеющий строгого доказательства, но общепризнанный), согласно которому все «разумные» модели вычислений (машины Тьюринга, лямбда-исчисление, рекурсивные функции) обладают одинаковой вычислительной мощностью.</p></li>
+</ul>
 <hr>
 </section>
-<section id="замкнутый-терм.-комбинатор" class="level2">
-<h2 class="anchored" data-anchor-id="замкнутый-терм.-комбинатор">Замкнутый терм. Комбинатор</h2>
-<p>Замкнутый (closed) терм — терм без свободных переменных</p>
-<pre class="text"><code>λx.x # Комбинатор тождества
-id = λx.x</code></pre>
+<section id="появление-типов-в-лямбда-исчислении" class="level3">
+<h3 class="anchored" data-anchor-id="появление-типов-в-лямбда-исчислении">4. Появление типов в лямбда-исчислении</h3>
+<ul>
+<li><p><strong>Проблема парадоксов</strong><br>
+Уже в 1930-е годы стало ясно, что «чистое» лямбда-исчисление может приводить к логическим парадоксам (например, <a href="https://ru.wikipedia.org/wiki/Парадокс_Клини_—_Россера">парадоксу Клини – Россера</a>), если рассматривать его как базис для формальной логики без дополнительных ограничений.</p></li>
+<li><p><strong>Введение типов (Simply Typed Lambda Calculus)</strong></p>
+<p>Первым, кто предложил теорию, свободную от парадокса Рассела, был сам Рассел. Он разработал теорию типов. В основе этой теории лежит следующая идея: простые объекты в этой теории имеют тип 0, множества простых объектов имеют тип 1, множества множеств простых объектов имеют тип 2 и так далее. Таким образом, ни одно множество не может иметь себя в качестве элемента. В ней были свои <a href="https://ru.wikipedia.org/wiki/Парадокс_Рассела#Теория_типов_Рассела">проблемы</a>, поэтому распространения она не получила.</p>
+<p>Чтобы избежать этих парадоксов, Алонзо Чёрч в 1940 году предложил <strong>типизированную версию</strong> лямбда-исчисления (так называемый <em>Simply Typed Lambda Calculus</em>). В этой системе каждой лямбда-абстракции и аргументу назначаются типы, что позволяет исключать некорректные выражения (например, ситуацию, когда функция применяется сама к себе неподходящим образом).</p></li>
+<li><p><strong>Дальнейшее развитие</strong></p>
+<ul>
+<li><em>Полиморфные типы (System F, Жирар/Рейнольдс)</em><br>
+</li>
+<li><em>Зависимые типы (Мартин-Лёф, Пер Мартин-Лёф)</em><br>
+</li>
+<li><em>Связь «Curry—Howard Correspondence»</em> — соответствие между термами лямбда-исчисления и доказательствами в интуиционистской логике.</li>
+</ul></li>
+</ul>
+<p>Всё это привело к появлению целой иерархии типизированных лямбда-систем, которые легли в основу современных теорий типов и конструктивной математики.</p>
 <hr>
 </section>
-<section id="бета-редукция" class="level2">
-<h2 class="anchored" data-anchor-id="бета-редукция">Бета-редукция</h2>
-<pre class="text"><code>(λx.t) u → t[x := u]</code></pre>
-<p><code>t[x := u]</code> — терм <code>t</code>, в котором все свободные вхождения <code>x</code> заменены на <code>u</code></p>
+<section id="влияние-на-информатику-и-языки-программирования" class="level3">
+<h3 class="anchored" data-anchor-id="влияние-на-информатику-и-языки-программирования">5. Влияние на информатику и языки программирования</h3>
+<ul>
+<li><p><strong>Функциональные языки</strong><br>
+На идеях лямбда-исчисления базируются Lisp, Haskell, OCaml, F#, а также многие языки, поддерживающие функциональные парадигмы.</p></li>
+<li><p><strong>Теория компиляторов</strong><br>
+Концепции лямбда-исчисления лежат в основе проектирования и реализации компиляторов для высокоуровневых языков.</p></li>
+<li><p><strong>Формальная верификация</strong><br>
+Типизированные версии лямбда-исчисления используются в системах проверки доказательств (Coq, Agda, Lean), где каждая программа является одновременно и термом, и доказательством некоторых логических свойств.</p></li>
+</ul>
 <hr>
 </section>
-<section id="примеры" class="level2">
-<h2 class="anchored" data-anchor-id="примеры">Примеры</h2>
-<ol type="1">
-<li>Применение комбинатора тождества к переменной:</li>
-</ol>
-<pre class="text"><code>(λx.x) y → x[x := y] = y</code></pre>
-<ol start="2" type="1">
-<li>Применение комбинатора тождества к комбинатору тождества:</li>
-</ol>
-<pre class="text"><code>(λx.x) (λx.x) → x[x := (λx.x)] = λx.x</code></pre>
-<ol start="3" type="1">
-<li>Лево-ассоциативность</li>
-</ol>
-<pre class="text"><code>(λx.x) (λx.x) y → x[x := (λx.x)] y = λx.x y</code></pre>
-<hr>
 </section>
-<section id="статегии-редукции" class="level2">
-<h2 class="anchored" data-anchor-id="статегии-редукции">Статегии редукции</h2>
-<!-- TODO: Надо поменять пример на нормальный при котором видна разница -->
-<section id="полная-бета-редукция" class="level3">
-<h3 class="anchored" data-anchor-id="полная-бета-редукция">Полная бета-редукция</h3>
-<p>Выбор следующего редекса не зависит от порядка</p>
-<pre class="text"><code>(λx.x) ((λx.x) (λz.(λx.x) z))
-→ (λx.x) ((λx.x) (λz.z))
-→ (λx.x) (λz.z)
-→ λz.z</code></pre>
-</section>
-<section id="нормальный-порядок" class="level3">
-<h3 class="anchored" data-anchor-id="нормальный-порядок">Нормальный порядок</h3>
-<p>Всегда редуцируется самый левый внешний редекс</p>
-<pre class="text"><code>(λx.x) ((λx.x) (λz.(λx.x) z))
-→ (λx.x) (λz.(λx.x) z)
-→ λz.(λx.x) z
-→ λz.z</code></pre>
-</section>
-<section id="вызов-по-имени" class="level3">
-<h3 class="anchored" data-anchor-id="вызов-по-имени">Вызов по имени</h3>
-<p>Всегда редуцируется самый левый внешний редекс, который не содержит абстракций</p>
-<pre class="text"><code>(λx.x) ((λx.x) (λz.(λx.x) z))
-→ (λx.x) (λz.(λx.x) z)
-→ λz.(λx.x) z  # Не редуцируется</code></pre>
-</section>
-<section id="вызов-по-значению" class="level3">
-<h3 class="anchored" data-anchor-id="вызов-по-значению">Вызов по значению</h3>
-<p>Всегда редуцируется самый левый внешний редекс, который не содержит абстракций и не является переменной</p>
-<pre class="text"><code>(λx.x) ((λx.x) (λz.(λx.x) z))
-→ (λx.x) (λz.(λx.x) z)
-→ λz.(λx.x) z  # Не редуцируется</code></pre>
-</section>
-</section>
-<section id="функции-нескольких-аргументов" class="level2">
-<h2 class="anchored" data-anchor-id="функции-нескольких-аргументов">Функции нескольких аргументов</h2>
-<p>Их нет, но есть есть функции высшего порядка</p>
-<pre class="text"><code>f = λ(x, y).s  # Такого терма нет
-f = λx.λy.s  # Вместо этого используется каррирование
-f v w = (f v) w → ((λx.λy.s) v) w → (λy.s[x := v]) w → s[x := v][y := w]</code></pre>
-<hr>
-</section>
-<section id="подстановка" class="level2">
-<h2 class="anchored" data-anchor-id="подстановка">Подстановка</h2>
-<pre class="text"><code>x[x := u] = u
-y[x := u] = y
-(λy.t)[x := u] = λy.t[x := u]
-(t1 t2)[x := u] = t1[x := u] t2[x := u]</code></pre>
-<pre class="text"><code>(λx.x)[x := u] != λx.u # x связан
-(λx.x)[x := u] = λx.x # подстановка должна заканчиваться на связанной переменной</code></pre>
-<pre class="text"><code>(λx.y)[y := x] = λx.x # y свободен
-# x при подстановке тоже не связан
-# но в результате подстановки мы получили
-# связанную переменную — захватили свободную переменную</code></pre>
-<section id="альфа-конверсия" class="level3">
-<h3 class="anchored" data-anchor-id="альфа-конверсия">Альфа-конверсия</h3>
-<pre class="text"><code>(λx.s) = (λy.s[x := y])</code></pre>
-</section>
-<section id="подстановка.-окончательное-определение" class="level3">
-<h3 class="anchored" data-anchor-id="подстановка.-окончательное-определение">Подстановка. Окончательное определение</h3>
-<pre class="text"><code>x[x := u] = u
-y[x := u] = y # если `y` != `x`
-(λy.t)[x := u] = λy.t[x := u] # если `y` != `x` и `y` не свободен в `u`
-(t1 t2)[x := u] = t1[x := u] t2[x := u]</code></pre>
+<section id="заключение" class="level2">
+<h2 class="anchored" data-anchor-id="заключение">Заключение</h2>
+<p><strong>Лямбда-исчисление</strong> возникло как попытка создать строгий формализм для описания функций и вычислимости в рамках математической логики. Благодаря исследованиям Алонзо Чёрча, Алана Тьюринга и их коллег, оно стало краеугольным камнем теории вычислимости. Введение <strong>типов</strong> в лямбда-исчисление сыграло важную роль в предотвращении парадоксов и послужило основой для дальнейшего развития теории типов, логики и функционального программирования.</p>
 
 
-</section>
-</section>
 </section>
 
 </main> <!-- /main -->
