@@ -315,9 +315,10 @@
 </section>
 <section id="бесконечная-саморедукция" class="slide level2">
 <h2>Бесконечная саморедукция</h2>
-<div class="sourceCode" id="cb11" data-code-line-numbers="|1|3|3-4|3-5"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb11-1"><a></a><span class="in">(</span>λx<span class="fu">.x</span> x<span class="in">)</span> y → y y</span>
+<p>Рассмотрим следующую функцию <span class="math inline">\(\omega = λx.x\ x\)</span>. Применим её к самой себе:</p>
+<div class="sourceCode" id="cb11" data-code-line-numbers="|1|3|3-4|3-5"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb11-1"><a></a>w y = <span class="in">(</span>λx<span class="fu">.x</span> x<span class="in">)</span> y → y y</span>
 <span id="cb11-2"><a></a></span>
-<span id="cb11-3"><a></a><span class="in">(</span>λx<span class="fu">.x</span> x<span class="in">)</span> <span class="in">(</span>λx<span class="fu">.x</span> x<span class="in">)</span> →</span>
+<span id="cb11-3"><a></a>w w = <span class="in">(</span>λx<span class="fu">.x</span> x<span class="in">)</span> <span class="in">(</span>λx<span class="fu">.x</span> x<span class="in">)</span> →</span>
 <span id="cb11-4"><a></a>→ <span class="in">(</span>λx<span class="fu">.x</span> x<span class="in">)</span> <span class="in">(</span>λx<span class="fu">.x</span> x<span class="in">)</span> →</span>
 <span id="cb11-5"><a></a>...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>

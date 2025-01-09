@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>lambda_vs_turing – λ-исчисление</title>
+<title>fixed-point – λ-исчисление</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -67,6 +67,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -80,7 +109,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../docs/Lambda_vs_Turing.html">Различия</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../docs/fixed-point.html">Рекурсия</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -113,7 +142,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/fixed-point.html" class="sidebar-item-text sidebar-link">
+  <a href="../docs/fixed-point.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Рекурсия</span></a>
   </div>
 </li>
@@ -125,7 +154,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Lambda_vs_Turing.html" class="sidebar-item-text sidebar-link active">
+  <a href="../docs/Lambda_vs_Turing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Различия</span></a>
   </div>
 </li>
@@ -151,21 +180,15 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#различия" id="toc-различия" class="nav-link active" data-scroll-target="#различия">Различия</a></li>
-  <li><a href="#плюсы-и-минусы" id="toc-плюсы-и-минусы" class="nav-link" data-scroll-target="#плюсы-и-минусы">Плюсы и минусы</a>
+  <li><a href="#рекурсия" id="toc-рекурсия" class="nav-link active" data-scroll-target="#рекурсия">Рекурсия</a>
   <ul class="collapse">
-  <li><a href="#labmda" id="toc-labmda" class="nav-link" data-scroll-target="#labmda">Labmda</a></li>
-  <li><a href="#turing" id="toc-turing" class="nav-link" data-scroll-target="#turing">Turing</a></li>
+  <li><a href="#самореплицируемая-функция" id="toc-самореплицируемая-функция" class="nav-link" data-scroll-target="#самореплицируемая-функция">Самореплицируемая функция</a></li>
+  <li><a href="#теорема-неподвижной-точки" id="toc-теорема-неподвижной-точки" class="nav-link" data-scroll-target="#теорема-неподвижной-точки">Теорема неподвижной точки</a>
+  <ul class="collapse">
+  <li><a href="#доказательство" id="toc-доказательство" class="nav-link" data-scroll-target="#доказательство">Доказательство</a></li>
   </ul></li>
-  <li><a href="#что-лучше-делать-на-каждом" id="toc-что-лучше-делать-на-каждом" class="nav-link" data-scroll-target="#что-лучше-делать-на-каждом">Что лучше делать на каждом?</a>
-  <ul class="collapse">
-  <li><a href="#lambda" id="toc-lambda" class="nav-link" data-scroll-target="#lambda">Lambda</a></li>
-  <li><a href="#turing-1" id="toc-turing-1" class="nav-link" data-scroll-target="#turing-1">Turing</a></li>
-  </ul></li>
-  <li><a href="#пример-алгоритма-сложения" id="toc-пример-алгоритма-сложения" class="nav-link" data-scroll-target="#пример-алгоритма-сложения">Пример алгоритма сложения</a>
-  <ul class="collapse">
-  <li><a href="#lambda-1" id="toc-lambda-1" class="nav-link" data-scroll-target="#lambda-1">lambda</a></li>
-  <li><a href="#turing-2" id="toc-turing-2" class="nav-link" data-scroll-target="#turing-2">Turing</a></li>
+  <li><a href="#комбинатор-неподвижной-точки" id="toc-комбинатор-неподвижной-точки" class="nav-link" data-scroll-target="#комбинатор-неподвижной-точки">Комбинатор неподвижной точки</a></li>
+  <li><a href="#рекурсия.-определение-факториала" id="toc-рекурсия.-определение-факториала" class="nav-link" data-scroll-target="#рекурсия.-определение-факториала">Рекурсия. Определение факториала</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -176,112 +199,67 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>По сути, они обе полны по Тьюрингу, одно можно заменить другим.</p>
-<section id="различия" class="level2">
-<h2 class="anchored" data-anchor-id="различия">Различия</h2>
-<p>Разница представлена в виде таблицы:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Критерий</th>
-<th>Lambda</th>
-<th>Turing</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Модель</td>
-<td>Абстрактная математическая модель, основанная на функциях и их применении.</td>
-<td>Абстрактный автомат с лентой и таблицей переходов.</td>
-</tr>
-<tr class="even">
-<td>Форма</td>
-<td>Вычисления задаются через функциональные преобразования и рекурсию.</td>
-<td>Операции определяются через пошаговые модификации ленты и состояния.</td>
-</tr>
-<tr class="odd">
-<td>Декларативность</td>
-<td>Больше ориентировано на выражение функций.</td>
-<td>Инструкции описывают шаги выполнения.</td>
-</tr>
-<tr class="even">
-<td>Абстракция</td>
-<td>Высокий уровень абстракции. Математическая чистота.</td>
-<td>Более низкий уровень, приближённый к реальному исполнению на машине.</td>
-</tr>
-<tr class="odd">
-<td>Выражение алгоритмов</td>
-<td>Композиция функций.</td>
-<td>Состояния и пошаговое изменение ленты.</td>
-</tr>
-<tr class="even">
-<td>Читаемость</td>
-<td>Более сложное для восприятия новичками из-за чисто функционального подхода.</td>
-<td>Более наглядное для имитации конкретного вычислительного процесса.</td>
-</tr>
-</tbody>
-</table>
+<section id="рекурсия" class="level1">
+<h1>Рекурсия</h1>
+<section id="самореплицируемая-функция" class="level2">
+<h2 class="anchored" data-anchor-id="самореплицируемая-функция">Самореплицируемая функция</h2>
+<p>Рассмотрим следующую терм <span class="math inline">\(\omega = λx.x\ x\)</span>.</p>
+<pre class="text"><code>w y = (λx.x x) y → y y</code></pre>
+<p>Применим его к самой себе:</p>
+<pre class="text"><code>w w = (λx.x x) (λx.x x) →
+→ (λx.x x) (λx.x x) →
+...</code></pre>
+<p>Этот процесс будет повторятся бесконечно. Процесс вычисления никогда не завершится.</p>
+<p>Этот оператор имеет философское отношение к парадоксу Рассела или парадоксу Клини, когда объект, определяемый через сам себя, приводит к некорректности или бесконечности.</p>
 </section>
-<section id="плюсы-и-минусы" class="level2">
-<h2 class="anchored" data-anchor-id="плюсы-и-минусы">Плюсы и минусы</h2>
-<section id="labmda" class="level3">
-<h3 class="anchored" data-anchor-id="labmda">Labmda</h3>
-<p>Плюсы: - Высокий уровень абстракции: позволяет описывать вычисления чисто математически. - Функциональный стиль: компактное и декларативное представление программ. - Математическая чистота: формальные доказательства корректности функций проще проводить. - Близость к современным языкам программирования: многие языки (например, Haskell, Lisp) используют идеи лямбда-исчисления.</p>
-<p>Минусы: - Трудности интерпретации: выполнение требует преобразования функций, что сложно для понимания. - Ограниченность моделирования состояния: отсутствие “пошагового” изменения состояния, как в императивных моделях. - Сложность реализации: для реального железа необходимо трансформировать выражения в машинные инструкции.</p>
-</section>
-<section id="turing" class="level3">
-<h3 class="anchored" data-anchor-id="turing">Turing</h3>
-<p>Плюсы: - Наглядность и интуитивность: легко представить вычисление как последовательность шагов. - Приближенность к аппаратному исполнению: модели состояния близки к работе процессоров. - Гибкость моделирования: можно выразить любые алгоритмы с дискретным изменением памяти. - Основа императивного программирования: родоначальник современных языков и архитектуры компьютеров.</p>
-<p>Минусы: - Низкий уровень абстракции: описания вычислений могут быть громоздкими. - Медлительность: моделирование сложных алгоритмов требует большого количества шагов. - Неудобство для функционального стиля: для чисто математических выражений менее эффективен.</p>
+<section id="теорема-неподвижной-точки" class="level2">
+<h2 class="anchored" data-anchor-id="теорема-неподвижной-точки">Теорема неподвижной точки</h2>
+<p>Для любого λ-терма F существует неподвижная точка</p>
+<p><span class="math display">\[
+\forall F\ \exists X: F\ X = X
+\]</span></p>
+<section id="доказательство" class="level3">
+<h3 class="anchored" data-anchor-id="доказательство">Доказательство</h3>
+<p>Введем - <span class="math inline">\(W = λx. F (x x)\)</span> - <span class="math inline">\(X = W W\)</span></p>
+<p>Тогда</p>
+<pre class="text"><code>X = W W = (λx. F (x x)) W = F (W W) = F X</code></pre>
 </section>
 </section>
-<section id="что-лучше-делать-на-каждом" class="level2">
-<h2 class="anchored" data-anchor-id="что-лучше-делать-на-каждом">Что лучше делать на каждом?</h2>
-<section id="lambda" class="level3">
-<h3 class="anchored" data-anchor-id="lambda">Lambda</h3>
-<ul>
-<li>Функциональное программирование: когда нужно выразить вычисления через композицию функций (например, рекурсивные алгоритмы).</li>
-<li>Доказательства корректности алгоритмов: благодаря чисто математическому подходу.</li>
-<li>Разработка теоретических моделей вычислений: например, исследование вычислимости функций или формального анализа программ.</li>
-<li>Комбинаторные вычисления: системы, использующие функции высшего порядка.</li>
-</ul>
+<section id="комбинатор-неподвижной-точки" class="level2">
+<h2 class="anchored" data-anchor-id="комбинатор-неподвижной-точки">Комбинатор неподвижной точки</h2>
+<p>Существует комбинатор неподвижной точки</p>
+<pre class="text"><code>Y = λf.(λx. f (x x))(λx. f (x x))</code></pre>
+<p>такой что <span class="math inline">\(\forall F:\ F\ (Y\ F) = Y\ F\)</span>.</p>
+<pre><code>Y F = 
+(λx. F (x x))(λx. F (x x)) = 
+F ((λx. F (x x))(λx. F (x x))) = 
+F (Y X)</code></pre>
 </section>
-<section id="turing-1" class="level3">
-<h3 class="anchored" data-anchor-id="turing-1">Turing</h3>
-<ul>
-<li>Моделирование пошаговых вычислений: например, алгоритмы работы памяти или устройства.</li>
-<li>Императивные алгоритмы: программы, работающие со состоянием и изменяющие память (циклы, присваивания).</li>
-<li>Создание симуляторов реального оборудования: имитация работы процессоров, интерпретаторов.</li>
-<li>Теоретические исследования конечных автоматов и их расширений.</li>
-</ul>
-</section>
-</section>
-<section id="пример-алгоритма-сложения" class="level2">
-<h2 class="anchored" data-anchor-id="пример-алгоритма-сложения">Пример алгоритма сложения</h2>
-<section id="lambda-1" class="level3">
-<h3 class="anchored" data-anchor-id="lambda-1">lambda</h3>
-<pre><code>add = λm.λn.λf.λx. m f (n f x)
+<section id="рекурсия.-определение-факториала" class="level2">
+<h2 class="anchored" data-anchor-id="рекурсия.-определение-факториала">Рекурсия. Определение факториала</h2>
+<p>Y-комбинатор позволяет ввести рекурсию в λ-исчисление.</p>
+<p>Немного расширим ламбда-исчисление, чтобы показать как можно ввести рекурсивное определение факториала используя комбинатор неподвижной точки. Введем следующие функции</p>
+<pre><code>PRED n — возвращает число предшествующее n
+MULT n m — возвращает произведение n и m
 
-add 2 3
-= (λm.λn.λf.λx. m f (n f x)) 2 3
-
-add 2 3 = λf.λx. (λf.λx.f (f x)) f ((λf.λx.f (f (f x))) f x)</code></pre>
-</section>
-<section id="turing-2" class="level3">
-<h3 class="anchored" data-anchor-id="turing-2">Turing</h3>
-<pre><code>q0 1 &gt; q0 1 R
-q0 # &gt; q1 # R
-q1 1 &gt; q2 E L
-q 2 1 &gt; q2 1 L
-q2 # &gt; q0 # R
-q0 E &gt; qf E Stop
-
-111#11 &gt; 11111</code></pre>
+ISZRO n — возвращает true, если n является 0
+IIF (x, y, z) — функция сравнения, возвращает y, если x — true, иначе z</code></pre>
+<p>Тогда в этих определениях мы хотим написать определения факториала используя рекурсивный вызов.</p>
+<pre><code>FAC = λn. IIF (ISZRO n) 1 (MULT n (FAC (PRED n)))</code></pre>
+<p>Но в лямбда-исчислении нельзя использовать саморефенцию для определения термов. Мы должны уметь развернуть каждое наше обозначения до базовых термов.</p>
+<p>Чтобы решить эту проблему воспользуемся оператором неподвижной точки:</p>
+<p>Перепишем с помощью абстракции</p>
+<pre><code>FAC = (λf λn. IIF (ISZRO n) 1 (MULT n (f (PRED n)))) FAC</code></pre>
+<p>Обозначим <code>(λf. λn. IIF (ISZRO n) 1 (MULT n (f (PRED n))))</code> как <code>F</code></p>
+<pre><code>FAC = F FAC</code></pre>
+<p>Видно, что <code>FAC</code> — неподвижная точка функции <code>F</code>.</p>
+<p>Тогда мы можем определить факториал следующим образом:</p>
+<pre><code>FAC = Y F, где 
+Y — комбинатор неподвижной точки,
+F = λf. λn. IIF (ISZRO n) 1 (MULT n (f (PRED n)))</code></pre>
+<hr>
+<p>Рекурсия в λ-исчислении реализуется через понятие неподвижной точки, позволяющей определить функции, вызывающие сами себя. Ключевую роль играет Y-комбинатор, который создает неподвижную точку для любой функции.</p>
+<p>Это позволяет разрабатывать рекурсивные алгоритмы в рамках λ-исчисления, избегая прямой самореференции.</p>
 
 
 </section>
