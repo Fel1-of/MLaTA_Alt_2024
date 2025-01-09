@@ -4,6 +4,7 @@ author:
   - name: Рыжиков И.С.
     email: iwanryzij@yandex.ru
   - name: Комосский Е.А.
+description: "Презентация по λ-исчислению"
 format: 
   revealjs:
     slide-number: true
