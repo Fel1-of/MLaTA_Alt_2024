@@ -16,9 +16,11 @@ website:
     contents:
       - text: "Главная"
         href: index.qmd
-      - auto: "docs/*.qmd"
+      - auto: "docs/**/*.qmd"
       - text: "Презентация"
         href: presentation/presentation.qmd
+  page-navigation: true
+
         
 
 editor: visual
