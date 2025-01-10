@@ -263,13 +263,29 @@ $$
 - Каждая константа имеет свой тип
 - В каждом типе есть свой счетный набор переменных
 
+:::{.fragment}
 $$
 \begin{align}
 & u:\beta  \text{ переменная } u \text{ имеет жестко заданный тип } \beta \\
-& u:\beta \implies (λx^\sigma.u) : \beta \\
+\end{align}
+$$
+:::
+
+:::{.fragment}
+$$
+\begin{align}
+& u:\beta \implies (λx^\sigma.u) : (\sigma → \beta) \\
+\end{align}
+$$
+:::
+
+:::{.fragment}
+$$
+\begin{align}
 & u:(\alpha → \beta),\ v:\alpha  \implies u\ v : \beta
 \end{align}
 $$
+:::
 
 ## Типизация по Карри
 
