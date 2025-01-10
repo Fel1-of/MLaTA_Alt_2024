@@ -492,7 +492,7 @@
     "href": "presentation/presentation.html#типизация-по-черчу",
     "title": "λ-исчисление",
     "section": "Типизация по Черчу",
-    "text": "Типизация по Черчу\n\nКаждая константа имеет свой тип\nВ каждом типе есть свой счетный набор переменных\n\n\\[\n\\begin{align}\n& u:\\beta  \\text{ переменная } u \\text{ имеет жестко заданный тип } \\beta \\\\\n& u:\\beta \\implies (λx^\\sigma.u) : \\beta \\\\\n& u:(\\alpha → \\beta),\\ v:\\alpha  \\implies u\\ v : \\beta\n\\end{align}\n\\]",
+    "text": "Типизация по Черчу\n\nКаждая константа имеет свой тип\nВ каждом типе есть свой счетный набор переменных\n\n\n\\[\n\\begin{align}\n& u:\\beta  \\text{ переменная } u \\text{ имеет жестко заданный тип } \\beta \\\\\n\\end{align}\n\\]\n\n\n\\[\n\\begin{align}\n& u:\\beta \\implies (λx^\\sigma.u) : (\\sigma → \\beta) \\\\\n\\end{align}\n\\]\n\n\n\\[\n\\begin{align}\n& u:(\\alpha → \\beta),\\ v:\\alpha  \\implies u\\ v : \\beta\n\\end{align}\n\\]",
     "crumbs": [
       "Презентация"
     ]

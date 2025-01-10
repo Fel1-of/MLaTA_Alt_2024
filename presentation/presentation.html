@@ -394,13 +394,27 @@
 <li>Каждая константа имеет свой тип</li>
 <li>В каждом типе есть свой счетный набор переменных</li>
 </ul>
+<div class="fragment">
 <p><span class="math display">\[
 \begin{align}
 &amp; u:\beta  \text{ переменная } u \text{ имеет жестко заданный тип } \beta \\
-&amp; u:\beta \implies (λx^\sigma.u) : \beta \\
+\end{align}
+\]</span></p>
+</div>
+<div class="fragment">
+<p><span class="math display">\[
+\begin{align}
+&amp; u:\beta \implies (λx^\sigma.u) : (\sigma → \beta) \\
+\end{align}
+\]</span></p>
+</div>
+<div class="fragment">
+<p><span class="math display">\[
+\begin{align}
 &amp; u:(\alpha → \beta),\ v:\alpha  \implies u\ v : \beta
 \end{align}
 \]</span></p>
+</div>
 </section>
 <section id="типизация-по-карри" class="slide level2">
 <h2>Типизация по Карри</h2>
