@@ -48,8 +48,20 @@ t ::=
     | t t  # применение (application)
 ```
 
-::: fragment
-**Соглашения**
+::: {.fragment}
+**Примеры**
+
+``` text
+x
+λx.t
+t t
+λx.(λy.(x y))
+(λx.(λy.(x y))) z
+((λx.(λy.(x y))) z) w
+```
+:::
+
+## Соглашения
 
 1.  Лево-ассоциативность применения:
 
@@ -65,8 +77,10 @@ t1 t2 t3 = (t1 t2) t3
 λx.λy.x y = λx.(λy.(x y))
 
 λx.λy.x y z = λx.(λy.((x y) z))
+
+(λx. λy. x y) z w = ((λx.(λy.(x y))) z) w
 ```
-:::
+
 
 ## Примеры
 
@@ -226,35 +240,27 @@ add x y = x + y
 add = \x -> \y -> x + y
 ```
 
-## Типы
+## Типы {.smaller}
 
 Введем множество типов переменных $\mathcal{X}$. И населим его одним базовым типом $\circ$
 
-$$\mathcal{X} = \{\circ\}$$
+$$
+\mathcal{X} = \{\circ\}
+$$
 
+Тип переменной $x$ обозначается $x:\alpha$
 $$
 \begin{align}
-& x^\circ \\
-& y^\circ \\
-\\
-& f = λx^\circ .y^\circ \\
-& f^{\circ→\circ}
+& x:\circ \\
+& y:\circ \\
 \end{align}
 $$
 
-## Типы. Bool и Nat
-
+Тип функции $f$ обозначается $f:\alpha → \beta$
 $$
 \begin{align}
-& true = λt^\circ. λf^\circ. t \\
-& false = λt^\circ. λf^\circ. f \\
-& Bool = \circ → \circ → \circ\ \\
-\\
-& zero = λs^{\circ→\circ}. λz^\circ. z\\
-& succ = λn. λs. λz^\circ. s\ n\ s\ z \\
-& one = succ\ zero = λs. λz^\circ. s\ z\\
-& ... \\
-& Nat = (\circ → \circ) → \circ → \circ
+& f = λx^\circ .y \\
+& f:{\circ→\circ}
 \end{align}
 $$
 
@@ -311,6 +317,22 @@ $\Gamma \vdash u: (\alpha → \beta),\ \Gamma \vdash v : \alpha \implies \Gamma 
 ::: {.fragment}
 $\Gamma, x : \alpha \vdash u : \beta \implies \Gamma \vdash (λx. u) : (\alpha → \beta)$
 :::
+
+## Типы. Bool и Nat
+
+$$
+\begin{align}
+& true = λt^\circ. λf^\circ. t \\
+& false = λt^\circ. λf^\circ. f \\
+& Bool = \circ → \circ → \circ\ \\
+\\
+& zero = λs^{\circ→\circ}. λz^\circ. z\\
+& succ = λn. λs. λz^\circ. s\ n\ s\ z \\
+& one = succ\ zero = λs. λz^\circ. s\ z\\
+& ... \\
+& Nat = (\circ → \circ) → \circ → \circ
+\end{align}
+$$
 
 ## Коротко
 
