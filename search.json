@@ -392,7 +392,17 @@
     "href": "presentation/presentation.html#определение-λ-исчисления.-термы",
     "title": "λ-исчисление",
     "section": "Определение λ-исчисления. Термы",
-    "text": "Определение λ-исчисления. Термы\nt ::=\n    x  # переменная (variable)\n    | λx.t  # абстракция (lambda abstraction)\n    | t t  # применение (application)\n\nСоглашения\n\nЛево-ассоциативность применения:\n\nt1 t2 t3 = (t1 t2) t3\n\nТело абстракции идёт до конца выражения:\n\nλx. x y = λx. (x y)\n\nλx.λy.x y = λx.(λy.(x y))\n\nλx.λy.x y z = λx.(λy.((x y) z))",
+    "text": "Определение λ-исчисления. Термы\nt ::=\n    x  # переменная (variable)\n    | λx.t  # абстракция (lambda abstraction)\n    | t t  # применение (application)\n\nПримеры\nx\nλx.t\nt t\nλx.(λy.(x y))\n(λx.(λy.(x y))) z\n((λx.(λy.(x y))) z) w",
+    "crumbs": [
+      "Презентация"
+    ]
+  },
+  {
+    "objectID": "presentation/presentation.html#соглашения",
+    "href": "presentation/presentation.html#соглашения",
+    "title": "λ-исчисление",
+    "section": "Соглашения",
+    "text": "Соглашения\n\nЛево-ассоциативность применения:\n\nt1 t2 t3 = (t1 t2) t3\n\nТело абстракции идёт до конца выражения:\n\nλx. x y = λx. (x y)\n\nλx.λy.x y = λx.(λy.(x y))\n\nλx.λy.x y z = λx.(λy.((x y) z))\n\n(λx. λy. x y) z w = ((λx.(λy.(x y))) z) w",
     "crumbs": [
       "Презентация"
     ]
@@ -472,17 +482,7 @@
     "href": "presentation/presentation.html#типы",
     "title": "λ-исчисление",
     "section": "Типы",
-    "text": "Типы\nВведем множество типов переменных \\(\\mathcal{X}\\). И населим его одним базовым типом \\(\\circ\\)\n\\[\\mathcal{X} = \\{\\circ\\}\\]\n\\[\n\\begin{align}\n& x^\\circ \\\\\n& y^\\circ \\\\\n\\\\\n& f = λx^\\circ .y^\\circ \\\\\n& f^{\\circ→\\circ}\n\\end{align}\n\\]",
-    "crumbs": [
-      "Презентация"
-    ]
-  },
-  {
-    "objectID": "presentation/presentation.html#типы.-bool-и-nat",
-    "href": "presentation/presentation.html#типы.-bool-и-nat",
-    "title": "λ-исчисление",
-    "section": "Типы. Bool и Nat",
-    "text": "Типы. Bool и Nat\n\\[\n\\begin{align}\n& true = λt^\\circ. λf^\\circ. t \\\\\n& false = λt^\\circ. λf^\\circ. f \\\\\n& Bool = \\circ → \\circ → \\circ\\ \\\\\n\\\\\n& zero = λs^{\\circ→\\circ}. λz^\\circ. z\\\\\n& succ = λn. λs. λz^\\circ. s\\ n\\ s\\ z \\\\\n& one = succ\\ zero = λs. λz^\\circ. s\\ z\\\\\n& ... \\\\\n& Nat = (\\circ → \\circ) → \\circ → \\circ\n\\end{align}\n\\]",
+    "text": "Типы\nВведем множество типов переменных \\(\\mathcal{X}\\). И населим его одним базовым типом \\(\\circ\\)\n\\[\n\\mathcal{X} = \\{\\circ\\}\n\\]\nТип переменной \\(x\\) обозначается \\(x:\\alpha\\) \\[\n\\begin{align}\n& x:\\circ \\\\\n& y:\\circ \\\\\n\\end{align}\n\\]\nТип функции \\(f\\) обозначается \\(f:\\alpha → \\beta\\) \\[\n\\begin{align}\n& f = λx^\\circ .y \\\\\n& f:{\\circ→\\circ}\n\\end{align}\n\\]",
     "crumbs": [
       "Презентация"
     ]
@@ -513,6 +513,16 @@
     "title": "λ-исчисление",
     "section": "Типизация по Карри",
     "text": "Типизация по Карри\n\\(\\Gamma \\vdash u:b\\)\nЕсли из контекста имеется вывод, что \\(u:b\\) тогда \\(u\\) может иметь тип \\(b\\)\n\n\\(\\Gamma, x:\\alpha \\vdash x : \\alpha\\)\n\n\n\\(\\Gamma \\vdash u: (\\alpha → \\beta),\\ \\Gamma \\vdash v : \\alpha \\implies \\Gamma \\vdash (uv) : \\beta\\)\n\n\n\\(\\Gamma, x : \\alpha \\vdash u : \\beta \\implies \\Gamma \\vdash (λx. u) : (\\alpha → \\beta)\\)",
+    "crumbs": [
+      "Презентация"
+    ]
+  },
+  {
+    "objectID": "presentation/presentation.html#типы.-bool-и-nat",
+    "href": "presentation/presentation.html#типы.-bool-и-nat",
+    "title": "λ-исчисление",
+    "section": "Типы. Bool и Nat",
+    "text": "Типы. Bool и Nat\n\\[\n\\begin{align}\n& true = λt^\\circ. λf^\\circ. t \\\\\n& false = λt^\\circ. λf^\\circ. f \\\\\n& Bool = \\circ → \\circ → \\circ\\ \\\\\n\\\\\n& zero = λs^{\\circ→\\circ}. λz^\\circ. z\\\\\n& succ = λn. λs. λz^\\circ. s\\ n\\ s\\ z \\\\\n& one = succ\\ zero = λs. λz^\\circ. s\\ z\\\\\n& ... \\\\\n& Nat = (\\circ → \\circ) → \\circ → \\circ\n\\end{align}\n\\]",
     "crumbs": [
       "Презентация"
     ]

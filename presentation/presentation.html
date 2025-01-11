@@ -244,20 +244,31 @@
 <span id="cb1-3"><a></a>    <span class="op">|</span> λx<span class="fu">.t</span>  # абстракция <span class="in">(</span>lambda abstraction<span class="in">)</span></span>
 <span id="cb1-4"><a></a>    <span class="op">|</span> t t  # применение <span class="in">(</span>application<span class="in">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
-<p><strong>Соглашения</strong></p>
+<p><strong>Примеры</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a></a>x</span>
+<span id="cb2-2"><a></a>λx.t</span>
+<span id="cb2-3"><a></a>t t</span>
+<span id="cb2-4"><a></a>λx.(λy.(x y))</span>
+<span id="cb2-5"><a></a>(λx.(λy.(x y))) z</span>
+<span id="cb2-6"><a></a>((λx.(λy.(x y))) z) w</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="соглашения" class="slide level2">
+<h2>Соглашения</h2>
 <ol type="1">
 <li>Лево-ассоциативность применения:</li>
 </ol>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a></a>t1 t2 t3 = (t1 t2) t3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a></a>t1 t2 t3 = (t1 t2) t3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="2" type="1">
 <li>Тело абстракции идёт до конца выражения:</li>
 </ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb3-1"><a></a>λx. x y = λx. <span class="in">(</span>x y<span class="in">)</span></span>
-<span id="cb3-2"><a></a></span>
-<span id="cb3-3"><a></a>λx<span class="fu">.λy.x</span> y = λx.<span class="in">(</span>λy.<span class="in">(</span>x y<span class="in">))</span></span>
-<span id="cb3-4"><a></a></span>
-<span id="cb3-5"><a></a>λx<span class="fu">.λy.x</span> y z = λx.<span class="in">(</span>λy.<span class="in">((</span>x y<span class="in">)</span> z<span class="in">))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb4-1"><a></a>λx. x y = λx. <span class="in">(</span>x y<span class="in">)</span></span>
+<span id="cb4-2"><a></a></span>
+<span id="cb4-3"><a></a>λx<span class="fu">.λy.x</span> y = λx.<span class="in">(</span>λy.<span class="in">(</span>x y<span class="in">))</span></span>
+<span id="cb4-4"><a></a></span>
+<span id="cb4-5"><a></a>λx<span class="fu">.λy.x</span> y z = λx.<span class="in">(</span>λy.<span class="in">((</span>x y<span class="in">)</span> z<span class="in">))</span></span>
+<span id="cb4-6"><a></a></span>
+<span id="cb4-7"><a></a><span class="in">(</span>λx. λy. x y<span class="in">)</span> z w = <span class="in">((</span>λx.<span class="in">(</span>λy.<span class="in">(</span>x y<span class="in">)))</span> z<span class="in">)</span> w</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="примеры" class="slide level2">
 <h2>Примеры</h2>
@@ -265,30 +276,30 @@
 <ol type="1">
 <li>Комбинатор тождества</li>
 </ol>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb4-1"><a></a><span class="in">(</span>λx<span class="fu">.x</span><span class="in">)</span> y </span>
-<span id="cb4-2"><a></a>→ x<span class="ex">[</span><span class="ss">x </span><span class="in">:</span>= y] </span>
-<span id="cb4-3"><a></a>= y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb5-1"><a></a><span class="in">(</span>λx<span class="fu">.x</span><span class="in">)</span> y </span>
+<span id="cb5-2"><a></a>→ x<span class="ex">[</span><span class="ss">x </span><span class="in">:</span>= y] </span>
+<span id="cb5-3"><a></a>= y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <ol start="2" type="1">
 <li>Применение комбинатора тождества к комбинатору тождества</li>
 </ol>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb5-1"><a></a><span class="in">(</span>λx<span class="fu">.x</span><span class="in">)</span> <span class="in">(</span>λx<span class="fu">.x</span><span class="in">)</span> → </span>
-<span id="cb5-2"><a></a>x<span class="ex">[</span><span class="ss">x </span><span class="in">:</span>= <span class="in">(</span>λx<span class="fu">.x</span><span class="in">)</span>] </span>
-<span id="cb5-3"><a></a>= λx<span class="fu">.x</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb6-1"><a></a><span class="in">(</span>λx<span class="fu">.x</span><span class="in">)</span> <span class="in">(</span>λx<span class="fu">.x</span><span class="in">)</span> → </span>
+<span id="cb6-2"><a></a>x<span class="ex">[</span><span class="ss">x </span><span class="in">:</span>= <span class="in">(</span>λx<span class="fu">.x</span><span class="in">)</span>] </span>
+<span id="cb6-3"><a></a>= λx<span class="fu">.x</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <ol start="3" type="1">
 <li>Лево-ассоциативность</li>
 </ol>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb6-1"><a></a><span class="in">(</span>λx<span class="fu">.x</span><span class="in">)</span> <span class="in">(</span>λx<span class="fu">.x</span><span class="in">)</span> y </span>
-<span id="cb6-2"><a></a>→ x<span class="ex">[</span><span class="ss">x </span><span class="in">:</span>= <span class="in">(</span>λx<span class="fu">.x</span><span class="in">)</span>] y </span>
-<span id="cb6-3"><a></a>= λx<span class="fu">.x</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb7-1"><a></a><span class="in">(</span>λx<span class="fu">.x</span><span class="in">)</span> <span class="in">(</span>λx<span class="fu">.x</span><span class="in">)</span> y </span>
+<span id="cb7-2"><a></a>→ x<span class="ex">[</span><span class="ss">x </span><span class="in">:</span>= <span class="in">(</span>λx<span class="fu">.x</span><span class="in">)</span>] y </span>
+<span id="cb7-3"><a></a>= λx<span class="fu">.x</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="формализация.-beta-редукция" class="slide level2">
 <h2>Формализация. <span class="math inline">\(\beta\)</span>-редукция</h2>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb7-1"><a></a><span class="in">(</span>λx<span class="fu">.t</span><span class="in">)</span> u → t<span class="ex">[</span><span class="ss">x </span><span class="in">:</span>= u]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb8-1"><a></a><span class="in">(</span>λx<span class="fu">.t</span><span class="in">)</span> u → t<span class="ex">[</span><span class="ss">x </span><span class="in">:</span>= u]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Заменяем в терме <span class="math inline">\(t\)</span> вхождения <span class="math inline">\(x\)</span> на <span class="math inline">\(u\)</span> и убираем λ, то есть <em>редуцируем</em>.</p>
 <div class="fragment">
 <p><strong><span class="math inline">\(\beta\)</span>-редукция — вычисление в λ-исчислении</strong></p>
@@ -297,94 +308,83 @@
 <section id="true-false-if" class="slide level2">
 <h2>true, false, if</h2>
 <p>Введем константы</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb8-1"><a></a>tru = λt. λf. t # возвращает первый аргумент</span>
-<span id="cb8-2"><a></a>fls = λt. λf. f # возвращает второй аргумент</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb9-1"><a></a>tru = λt. λf. t # возвращает первый аргумент</span>
+<span id="cb9-2"><a></a>fls = λt. λf. f # возвращает второй аргумент</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Введем функцию test — аналог if-else</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb9-1"><a></a>test = λl. λm. λn. l m n</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb10-1"><a></a>test = λl. λm. λn. l m n</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <p>Пример</p>
-<div class="sourceCode" id="cb10" data-code-line-numbers="|1|2|3|4|5|6|7|8"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb10-1"><a></a>test tru v w = </span>
-<span id="cb10-2"><a></a>= <span class="in">(</span>λl. λm. λn. l m n<span class="in">)</span> tru v w →</span>
-<span id="cb10-3"><a></a>→ <span class="in">(</span>λm. λn. tru m n<span class="in">)</span> v w →</span>
-<span id="cb10-4"><a></a>→ <span class="in">(</span>λn. tru v n<span class="in">)</span> w →</span>
-<span id="cb10-5"><a></a>→ tru v w =</span>
-<span id="cb10-6"><a></a>= <span class="in">(</span>λt. λf. t<span class="in">)</span> v w →</span>
-<span id="cb10-7"><a></a>→ <span class="in">(</span>λf. v<span class="in">)</span> w →</span>
-<span id="cb10-8"><a></a>→ v</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11" data-code-line-numbers="|1|2|3|4|5|6|7|8"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb11-1"><a></a>test tru v w = </span>
+<span id="cb11-2"><a></a>= <span class="in">(</span>λl. λm. λn. l m n<span class="in">)</span> tru v w →</span>
+<span id="cb11-3"><a></a>→ <span class="in">(</span>λm. λn. tru m n<span class="in">)</span> v w →</span>
+<span id="cb11-4"><a></a>→ <span class="in">(</span>λn. tru v n<span class="in">)</span> w →</span>
+<span id="cb11-5"><a></a>→ tru v w =</span>
+<span id="cb11-6"><a></a>= <span class="in">(</span>λt. λf. t<span class="in">)</span> v w →</span>
+<span id="cb11-7"><a></a>→ <span class="in">(</span>λf. v<span class="in">)</span> w →</span>
+<span id="cb11-8"><a></a>→ v</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="бесконечная-саморедукция" class="slide level2">
 <h2>Бесконечная саморедукция</h2>
 <p>Рассмотрим следующую функцию <span class="math inline">\(\omega = λx.x\ x\)</span>. Применим её к самой себе:</p>
-<div class="sourceCode" id="cb11" data-code-line-numbers="|1|3|3-4|3-5"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb11-1"><a></a>w y = <span class="in">(</span>λx<span class="fu">.x</span> x<span class="in">)</span> y → y y</span>
-<span id="cb11-2"><a></a></span>
-<span id="cb11-3"><a></a>w w = <span class="in">(</span>λx<span class="fu">.x</span> x<span class="in">)</span> <span class="in">(</span>λx<span class="fu">.x</span> x<span class="in">)</span> →</span>
-<span id="cb11-4"><a></a>→ <span class="in">(</span>λx<span class="fu">.x</span> x<span class="in">)</span> <span class="in">(</span>λx<span class="fu">.x</span> x<span class="in">)</span> →</span>
-<span id="cb11-5"><a></a>...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12" data-code-line-numbers="|1|3|3-4|3-5"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb12-1"><a></a>w y = <span class="in">(</span>λx<span class="fu">.x</span> x<span class="in">)</span> y → y y</span>
+<span id="cb12-2"><a></a></span>
+<span id="cb12-3"><a></a>w w = <span class="in">(</span>λx<span class="fu">.x</span> x<span class="in">)</span> <span class="in">(</span>λx<span class="fu">.x</span> x<span class="in">)</span> →</span>
+<span id="cb12-4"><a></a>→ <span class="in">(</span>λx<span class="fu">.x</span> x<span class="in">)</span> <span class="in">(</span>λx<span class="fu">.x</span> x<span class="in">)</span> →</span>
+<span id="cb12-5"><a></a>...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="подстановка" class="slide level2">
 <h2>Подстановка</h2>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb12-1"><a></a>x<span class="ex">[</span><span class="ss">x </span><span class="in">:</span>= u] = u</span>
-<span id="cb12-2"><a></a>y<span class="ex">[</span><span class="ss">x </span><span class="in">:</span>= u] = y</span>
-<span id="cb12-3"><a></a><span class="in">(</span>λy<span class="fu">.t</span><span class="in">)</span><span class="ex">[</span><span class="ss">x </span><span class="in">:</span>= u] = λy<span class="fu">.t</span><span class="ex">[</span><span class="ss">x </span><span class="in">:</span>= u]</span>
-<span id="cb12-4"><a></a><span class="in">(</span>t1 t2<span class="in">)</span><span class="ex">[</span><span class="ss">x </span><span class="in">:</span>= u] = t1<span class="ex">[</span><span class="ss">x </span><span class="in">:</span>= u] t2<span class="ex">[</span><span class="ss">x </span><span class="in">:</span>= u]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb13-1"><a></a>x<span class="ex">[</span><span class="ss">x </span><span class="in">:</span>= u] = u</span>
+<span id="cb13-2"><a></a>y<span class="ex">[</span><span class="ss">x </span><span class="in">:</span>= u] = y</span>
+<span id="cb13-3"><a></a><span class="in">(</span>λy<span class="fu">.t</span><span class="in">)</span><span class="ex">[</span><span class="ss">x </span><span class="in">:</span>= u] = λy<span class="fu">.t</span><span class="ex">[</span><span class="ss">x </span><span class="in">:</span>= u]</span>
+<span id="cb13-4"><a></a><span class="in">(</span>t1 t2<span class="in">)</span><span class="ex">[</span><span class="ss">x </span><span class="in">:</span>= u] = t1<span class="ex">[</span><span class="ss">x </span><span class="in">:</span>= u] t2<span class="ex">[</span><span class="ss">x </span><span class="in">:</span>= u]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <p>λ связывает переменные</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb13-1"><a></a><span class="in">(</span>λx<span class="fu">.x</span><span class="in">)</span><span class="ex">[</span><span class="ss">x </span><span class="in">:</span>= u] != λx<span class="fu">.u</span>  # x связан</span>
-<span id="cb13-2"><a></a><span class="in">(</span>λx<span class="fu">.x</span><span class="in">)</span><span class="ex">[</span><span class="ss">x </span><span class="in">:</span>= u] = λx<span class="fu">.x</span>   # подстановка должна заканчиваться на связанной переменной</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb14-1"><a></a><span class="in">(</span>λx<span class="fu">.x</span><span class="in">)</span><span class="ex">[</span><span class="ss">x </span><span class="in">:</span>= u] != λx<span class="fu">.u</span>  # x связан</span>
+<span id="cb14-2"><a></a><span class="in">(</span>λx<span class="fu">.x</span><span class="in">)</span><span class="ex">[</span><span class="ss">x </span><span class="in">:</span>= u] = λx<span class="fu">.x</span>   # подстановка должна заканчиваться на связанной переменной</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <p>НО</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb14-1"><a></a><span class="in">(</span>λx<span class="fu">.y</span><span class="in">)</span><span class="ex">[</span><span class="ss">y </span><span class="in">:</span>= x] = λx<span class="fu">.x</span> # y свободен — x при подстановке должен остаться не связанным<span class="op">,</span></span>
-<span id="cb14-2"><a></a># но в результате подстановки мы получили</span>
-<span id="cb14-3"><a></a># связанную переменную — захватили свободную переменную</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb15-1"><a></a><span class="in">(</span>λx<span class="fu">.y</span><span class="in">)</span><span class="ex">[</span><span class="ss">y </span><span class="in">:</span>= x] = λx<span class="fu">.x</span> # y свободен — x при подстановке должен остаться не связанным<span class="op">,</span></span>
+<span id="cb15-2"><a></a># но в результате подстановки мы получили</span>
+<span id="cb15-3"><a></a># связанную переменную — захватили свободную переменную</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="решение.-alpha-конверсия" class="slide level2">
 <h2>Решение. <span class="math inline">\(\alpha\)</span>-конверсия</h2>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb15-1"><a></a>(λx.s) = (λy.s[x := y])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb16-1"><a></a>(λx.s) = (λy.s[x := y])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="сравнение-с-языками-программирования" class="slide level2">
 <h2>Сравнение с языками программирования</h2>
 <p>λ-исчисление</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb16-1"><a></a>λx<span class="fu">.λy</span>.<span class="in">(</span>x <span class="op">+</span> y<span class="in">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb17-1"><a></a>λx<span class="fu">.λy</span>.<span class="in">(</span>x <span class="op">+</span> y<span class="in">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Python</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a></a>add <span class="op">=</span> <span class="kw">lambda</span> x: <span class="kw">lambda</span> y: x <span class="op">+</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a></a>add <span class="op">=</span> <span class="kw">lambda</span> x: <span class="kw">lambda</span> y: x <span class="op">+</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>JS</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb18-1"><a></a><span class="kw">const</span> add <span class="op">=</span> x <span class="kw">=&gt;</span> y <span class="kw">=&gt;</span> x <span class="op">+</span> y<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb19-1"><a></a><span class="kw">const</span> add <span class="op">=</span> x <span class="kw">=&gt;</span> y <span class="kw">=&gt;</span> x <span class="op">+</span> y<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Haskell</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource haskell number-lines code-with-copy"><code class="sourceCode haskell"><span id="cb19-1"><a></a><span class="ot">add ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></span>
-<span id="cb19-2"><a></a>add x y <span class="ot">=</span> x <span class="op">+</span> y</span>
-<span id="cb19-3"><a></a><span class="co">-- или</span></span>
-<span id="cb19-4"><a></a>add <span class="ot">=</span> \x <span class="ot">-&gt;</span> \y <span class="ot">-&gt;</span> x <span class="op">+</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource haskell number-lines code-with-copy"><code class="sourceCode haskell"><span id="cb20-1"><a></a><span class="ot">add ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></span>
+<span id="cb20-2"><a></a>add x y <span class="ot">=</span> x <span class="op">+</span> y</span>
+<span id="cb20-3"><a></a><span class="co">-- или</span></span>
+<span id="cb20-4"><a></a>add <span class="ot">=</span> \x <span class="ot">-&gt;</span> \y <span class="ot">-&gt;</span> x <span class="op">+</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="типы" class="slide level2">
+<section id="типы" class="slide level2 smaller">
 <h2>Типы</h2>
 <p>Введем множество типов переменных <span class="math inline">\(\mathcal{X}\)</span>. И населим его одним базовым типом <span class="math inline">\(\circ\)</span></p>
-<p><span class="math display">\[\mathcal{X} = \{\circ\}\]</span></p>
 <p><span class="math display">\[
+\mathcal{X} = \{\circ\}
+\]</span></p>
+<p>Тип переменной <span class="math inline">\(x\)</span> обозначается <span class="math inline">\(x:\alpha\)</span> <span class="math display">\[
 \begin{align}
-&amp; x^\circ \\
-&amp; y^\circ \\
-\\
-&amp; f = λx^\circ .y^\circ \\
-&amp; f^{\circ→\circ}
+&amp; x:\circ \\
+&amp; y:\circ \\
 \end{align}
 \]</span></p>
-</section>
-<section id="типы.-bool-и-nat" class="slide level2">
-<h2>Типы. Bool и Nat</h2>
-<p><span class="math display">\[
+<p>Тип функции <span class="math inline">\(f\)</span> обозначается <span class="math inline">\(f:\alpha → \beta\)</span> <span class="math display">\[
 \begin{align}
-&amp; true = λt^\circ. λf^\circ. t \\
-&amp; false = λt^\circ. λf^\circ. f \\
-&amp; Bool = \circ → \circ → \circ\ \\
-\\
-&amp; zero = λs^{\circ→\circ}. λz^\circ. z\\
-&amp; succ = λn. λs. λz^\circ. s\ n\ s\ z \\
-&amp; one = succ\ zero = λs. λz^\circ. s\ z\\
-&amp; ... \\
-&amp; Nat = (\circ → \circ) → \circ → \circ
+&amp; f = λx^\circ .y \\
+&amp; f:{\circ→\circ}
 \end{align}
 \]</span></p>
 </section>
@@ -439,6 +439,22 @@
 <p><span class="math inline">\(\Gamma, x : \alpha \vdash u : \beta \implies \Gamma \vdash (λx. u) : (\alpha → \beta)\)</span></p>
 </div>
 </section>
+<section id="типы.-bool-и-nat" class="slide level2">
+<h2>Типы. Bool и Nat</h2>
+<p><span class="math display">\[
+\begin{align}
+&amp; true = λt^\circ. λf^\circ. t \\
+&amp; false = λt^\circ. λf^\circ. f \\
+&amp; Bool = \circ → \circ → \circ\ \\
+\\
+&amp; zero = λs^{\circ→\circ}. λz^\circ. z\\
+&amp; succ = λn. λs. λz^\circ. s\ n\ s\ z \\
+&amp; one = succ\ zero = λs. λz^\circ. s\ z\\
+&amp; ... \\
+&amp; Nat = (\circ → \circ) → \circ → \circ
+\end{align}
+\]</span></p>
+</section>
 <section id="коротко" class="slide level2">
 <h2>Коротко</h2>
 <p><em>Типизация по Черчу</em></p>
@@ -491,20 +507,20 @@
 <section id="сложение-чисел" class="slide level2">
 <h2>Сложение чисел</h2>
 <p>λ-исчисление</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb20-1"><a></a>2 = λs λz s <span class="in">(</span>s z<span class="in">)</span></span>
-<span id="cb20-2"><a></a>3 = λs λz s <span class="in">(</span>s <span class="in">(</span>s z<span class="in">))</span></span>
-<span id="cb20-3"><a></a>add = λm. λn. λs. λz. m s <span class="in">(</span>n s z<span class="in">)</span></span>
-<span id="cb20-4"><a></a></span>
-<span id="cb20-5"><a></a>add 2 3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb21-1"><a></a>2 = λs λz s <span class="in">(</span>s z<span class="in">)</span></span>
+<span id="cb21-2"><a></a>3 = λs λz s <span class="in">(</span>s <span class="in">(</span>s z<span class="in">))</span></span>
+<span id="cb21-3"><a></a>add = λm. λn. λs. λz. m s <span class="in">(</span>n s z<span class="in">)</span></span>
+<span id="cb21-4"><a></a></span>
+<span id="cb21-5"><a></a>add 2 3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Машина Тьюринга</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb21-1"><a></a>q0 1 → q0 1 R</span>
-<span id="cb21-2"><a></a>q0 # → q0 # R</span>
-<span id="cb21-3"><a></a>q1 1 → q2 ε L</span>
-<span id="cb21-4"><a></a>q2 1 → q2 1 L</span>
-<span id="cb21-5"><a></a>q2 # → q0 1 R</span>
-<span id="cb21-6"><a></a>q0 ε → q0 ε N</span>
-<span id="cb21-7"><a></a></span>
-<span id="cb21-8"><a></a>111<span class="pp">#11</span> <span class="op">&gt;</span> 11111</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb22-1"><a></a>q0 1 → q0 1 R</span>
+<span id="cb22-2"><a></a>q0 # → q0 # R</span>
+<span id="cb22-3"><a></a>q1 1 → q2 ε L</span>
+<span id="cb22-4"><a></a>q2 1 → q2 1 L</span>
+<span id="cb22-5"><a></a>q2 # → q0 1 R</span>
+<span id="cb22-6"><a></a>q0 ε → q0 ε N</span>
+<span id="cb22-7"><a></a></span>
+<span id="cb22-8"><a></a>111<span class="pp">#11</span> <span class="op">&gt;</span> 11111</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
